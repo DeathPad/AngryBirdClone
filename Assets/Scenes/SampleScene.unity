@@ -281,7 +281,10 @@ MonoBehaviour:
   eventSystem: {fileID: 690944134}
   woodsPrefab: {fileID: 9002686443209473172, guid: 3e535cf43206e63479b08d786cb14ffd,
     type: 3}
+  enemyPrefab: {fileID: 6966104364171056256, guid: f9bd5897f3b9b9743be192c00d437360,
+    type: 3}
   woods: {fileID: 4431414378959551539}
+  enemies: {fileID: 877612490}
   killerColliderList:
   - {fileID: 1107330013}
   - {fileID: 531549721}
@@ -314,9 +317,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41db01463fbfced459e26a7df998578b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Default
+  levelName: Starting
   woods: {fileID: 4431414378959551539}
-  birds: []
+  enemies: {fileID: 877612490}
+  birds:
+  - Bird
+  - Bird
+  - Bird
   isExport: 1
 --- !u!114 &373724608
 MonoBehaviour:
@@ -417,6 +424,36 @@ MonoBehaviour:
   slingCollider: {fileID: 388448739}
   radius: 0.75
   throwSpeed: 30
+--- !u!1 &419741943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 419741944}
+  m_Layer: 0
+  m_Name: Enemies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &419741944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419741943}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4431414379136208631}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,6 +706,36 @@ Transform:
   - {fileID: 1497972387}
   m_Father: {fileID: 4431414379136208631}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &877612490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 877612491}
+  m_Layer: 0
+  m_Name: Enemies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &877612491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877612490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4431414379866938610}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1107330011
 GameObject:
@@ -1142,6 +1209,7 @@ Transform:
   - {fileID: 4431414379866938610}
   - {fileID: 4431414380032158338}
   - {fileID: 871596383}
+  - {fileID: 419741944}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1238,6 +1306,7 @@ Transform:
   m_Children:
   - {fileID: 4431414378959551538}
   - {fileID: 2096661010}
+  - {fileID: 877612491}
   m_Father: {fileID: 4431414379136208631}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

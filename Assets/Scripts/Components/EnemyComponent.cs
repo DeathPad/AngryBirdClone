@@ -1,48 +1,48 @@
-﻿using UnityEngine;
+﻿using ProgrammingBatch.AngryBirdClone.Logic;
+using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace ProgrammingBatch.AngryBirdClone.Component
 {
     public class EnemyComponent : MonoBehaviour
     {
-        public class Enemy : MonoBehaviour
+        private bool _isHit = false;
+
+        public void SetEnemyData(string enemy)
         {
-            public float Health = 50f;
+            Type _enemyType = Type.GetType($"ProgrammingBatch.AngryBirdClone.Logic.{enemy}, Assembly-CSharp");
+            Enemy _enemyObject = (Enemy)Activator.CreateInstance(_enemyType);
 
-            public UnityAction<GameObject> OnEnemyDestroyed = delegate { };
+            _enemy = _enemyObject;
+            _currentHealth = _enemy.GetHealth();
+        }
 
-            private bool _isHit = false;
+        void OnCollisionEnter2D(Collision2D col)
+        {
+            if (col.gameObject.GetComponent<Rigidbody2D>() == null) return;
 
-            void OnDestroy()
+            if (col.gameObject.tag == "Bird")
             {
-                if (_isHit)
-                {
-                    OnEnemyDestroyed(gameObject);
-                }
+                _isHit = true;
+                Destroy(gameObject);
             }
-
-            void OnCollisionEnter2D(Collision2D col)
+            else if (col.gameObject.tag == "Obstacle")
             {
-                if (col.gameObject.GetComponent<Rigidbody2D>() == null) return;
+                //Hitung damage yang diperoleh
+                float damage = col.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude * 10;
+                _currentHealth -= damage;
 
-                if (col.gameObject.tag == "Bird")
+                if (_currentHealth <= 0)
                 {
                     _isHit = true;
                     Destroy(gameObject);
                 }
-                else if (col.gameObject.tag == "Obstacle")
-                {
-                    //Hitung damage yang diperoleh
-                    float damage = col.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude * 10;
-                    Health -= damage;
-
-                    if (Health <= 0)
-                    {
-                        _isHit = true;
-                        Destroy(gameObject);
-                    }
-                }
             }
         }
+
+        private Enemy _enemy;
+
+        private float _currentHealth;
     }
 }

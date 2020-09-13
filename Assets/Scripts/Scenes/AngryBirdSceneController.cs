@@ -51,13 +51,22 @@ namespace ProgrammingBatch.AngryBirdClone
                 GameObject _obstacleGameObject = Instantiate(woodsPrefab, _obstacle.position, _obstacle.rotationData.CreateQuaternion());
                 _obstacleGameObject.transform.parent = woods.transform;
             }
+
+            foreach(EnemyData _enemyData in levelData.enemies)
+            {
+                GameObject _enemyGameObject = Instantiate(enemyPrefab, _enemyData.position, Quaternion.identity);
+                _enemyGameObject.GetComponent<EnemyComponent>().SetEnemyData(_enemyData.enemyName);
+                _enemyGameObject.transform.parent = woods.transform;
+            }
         }
 
         [Space]
         [SerializeField] private GameObject woodsPrefab = default;
+        [SerializeField] private GameObject enemyPrefab = default;
 
         [Space]
         [SerializeField] private GameObject woods = default;
+        [SerializeField] private GameObject enemies = default;
 
         [SerializeField] private List<KillerColliderComponent> killerColliderList = default;
 

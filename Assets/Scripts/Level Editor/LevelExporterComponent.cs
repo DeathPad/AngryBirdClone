@@ -14,9 +14,10 @@ namespace ProgrammingBatch.Magnetize
         [SerializeField] private string levelName = default;
 
         [SerializeField] private GameObject woods = default;
+        [SerializeField] private GameObject enemies = default;
         [SerializeField] private List<string> birds = default;
         [Space]
-        [SerializeField] private bool isExport;
+        [SerializeField] private bool isExport = false;
 
         private void Start()
         {
@@ -28,7 +29,8 @@ namespace ProgrammingBatch.Magnetize
             LevelData _levelData = new LevelData
             {
                 obstacles = GetObstaclesData(),
-                birds = this.birds
+                birds = this.birds,
+                enemies = GetEnemiesData()
             };
             ExportToJSON(_levelData);
         }
@@ -47,6 +49,22 @@ namespace ProgrammingBatch.Magnetize
                 _woodsData.Add(_obstaclesData);
             }
             return _woodsData;
+        }
+
+        private List<EnemyData> GetEnemiesData()
+        {
+            List<EnemyData> _enemiesData = new List<EnemyData>();
+            foreach (Transform enemy in enemies.transform)
+            {
+                EnemyData _enemyData = new EnemyData()
+                {
+                    enemyName = enemy.name,
+                    position = enemy.transform.position
+                };
+
+                _enemiesData.Add(_enemyData);
+            }
+            return _enemiesData;
         }
 
         private void ExportToJSON(LevelData levelData)

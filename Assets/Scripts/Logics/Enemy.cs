@@ -2,11 +2,11 @@
 {
     public class Enemy
     {
-        public virtual int GetHealth()
+        public virtual float GetHealth()
         {
             return health;
         }
 
-        protected int health = 50;
+        protected float health = 50;
     }
 }
